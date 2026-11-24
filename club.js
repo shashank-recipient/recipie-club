@@ -25,7 +25,7 @@
     renderNet(); renderCamps(); ready();
   };
   // step 2: give-back
-  $('#gb').innerHTML = [15, 18, 20].map(v => `<button type="button" role="radio" data-v="${v}" aria-checked="${v === st.giveBack}">${v}%</button>`).join('');
+  $('#gb').innerHTML = [10, 12, 15, 18, 20].map(v => `<button type="button" role="radio" data-v="${v}" aria-checked="${v === st.giveBack}">${v}%</button>`).join('');
   $('#gb').onclick = e => { const b = e.target.closest('[data-v]'); if (!b) return; st.giveBack = +b.dataset.v; $('#gb').querySelectorAll('button').forEach(x => x.setAttribute('aria-checked', String(x === b))); };
   // step 3: network
   function renderNet() {

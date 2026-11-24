@@ -56,7 +56,7 @@ h1,h2,h3,h4{font-family:var(--f-display);line-height:1.06;letter-spacing:-.02em;
 .step h3{font-size:22px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .step h3 span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--husk);font:700 15px var(--f-mono)}
 .hint{color:var(--muted);font-size:15px;margin:0 0 12px}
-.bizgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.bizgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:10px}
 .biz{font:inherit;text-align:left;border:2px solid var(--line);border-radius:8px;background:var(--husk);color:var(--ink);padding:12px;cursor:pointer;display:grid;gap:2px;min-height:96px;-webkit-tap-highlight-color:transparent}
 .biz .ic{font-size:26px;line-height:1}
 .biz b{font-size:15.5px;line-height:1.25}
@@ -137,7 +137,7 @@ h1,h2,h3,h4{font-family:var(--f-display);line-height:1.06;letter-spacing:-.02em;
   .top-link{font-size:14px}.pill{display:none}
   .rels{grid-template-columns:1fr}.camps{grid-template-columns:1fr}
   .net li{grid-template-columns:1fr}.rel-pick{justify-content:flex-start}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);width:100%}.seg button{padding:12px 0}
+  .seg{display:grid;grid-template-columns:repeat(5,1fr);width:100%}.seg button{padding:12px 0;font-size:15px}
   .fields{grid-template-columns:1fr}
   .kpi b{font-size:24px}
   .results{padding:14px;box-shadow:3px 3px 0 var(--chilli)}

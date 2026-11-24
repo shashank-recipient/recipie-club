@@ -1,38 +1,44 @@
 // Practice Nagar: a made-up precinct with made-up businesses, used by the practice games.
 // Every number here is illustrative. Nothing describes a real business.
 window.PRACTICE = (function () {
+  // service-led businesses only for now (no resellers of physical goods, where margins can't fund a give-back)
   const B = [
     { id: 'cafe', name: 'Morning Mug Café', short: 'Morning Mug', seg: 'Café', icon: '☕', weekly: 260, spend: 220, repeat: 0.34 },
     { id: 'salon', name: 'Sharp & Shine Salon', short: 'Sharp & Shine', seg: 'Salon', icon: '✂️', weekly: 90, spend: 650, repeat: 0.42 },
-    { id: 'kirana', name: 'Annapurna Kirana', short: 'Annapurna', seg: 'Grocery', icon: '🛒', weekly: 420, spend: 480, repeat: 0.55 },
     { id: 'gym', name: 'Iron Den Gym', short: 'Iron Den', seg: 'Gym', icon: '🏋️', weekly: 150, spend: 300, repeat: 0.6 },
     { id: 'tuition', name: 'Bright Minds Tuition', short: 'Bright Minds', seg: 'Tuition', icon: '📚', weekly: 70, spend: 600, repeat: 0.7 },
     { id: 'florist', name: 'Petal & Stem Florist', short: 'Petal & Stem', seg: 'Florist', icon: '💐', weekly: 60, spend: 550, repeat: 0.22 },
     { id: 'bakery', name: 'Oven Fresh Bakery', short: 'Oven Fresh', seg: 'Bakery', icon: '🥐', weekly: 300, spend: 260, repeat: 0.38 },
-    { id: 'pharmacy', name: 'Kind Care Pharmacy', short: 'Kind Care', seg: 'Pharmacy', icon: '💊', weekly: 340, spend: 410, repeat: 0.45 },
+    { id: 'pet', name: 'Paws & Bubbles Pet Spa', short: 'Paws & Bubbles', seg: 'Pet grooming', icon: '🐶', weekly: 45, spend: 900, repeat: 0.5 },
+    { id: 'auto', name: 'Gleam Auto Care', short: 'Gleam Auto', seg: 'Auto care', icon: '🚗', weekly: 80, spend: 800, repeat: 0.4 },
+    { id: 'game', name: 'Level Up Game Zone', short: 'Level Up', seg: 'Game zone', icon: '🎮', weekly: 220, spend: 400, repeat: 0.35 },
+    { id: 'activity', name: 'Clay & Climb Activity Centre', short: 'Clay & Climb', seg: 'Activity centre', icon: '🧗', weekly: 120, spend: 700, repeat: 0.45 },
   ];
   // how often customers of one place go to another just before or after (0–1)
   const AFF = {
-    'cafe|gym': .34, 'cafe|salon': .22, 'cafe|bakery': .16, 'cafe|tuition': .12, 'cafe|florist': .1, 'cafe|kirana': .06, 'cafe|pharmacy': .05,
-    'salon|florist': .2, 'salon|bakery': .08, 'salon|pharmacy': .06, 'salon|kirana': .05, 'salon|gym': .1, 'salon|tuition': .04,
-    'kirana|pharmacy': .24, 'kirana|bakery': .2, 'kirana|tuition': .16, 'kirana|gym': .05, 'kirana|florist': .06,
-    'gym|pharmacy': .12, 'gym|bakery': .08, 'gym|tuition': .03, 'gym|florist': .02,
-    'tuition|bakery': .3, 'tuition|pharmacy': .05, 'tuition|florist': .03,
-    'florist|bakery': .22, 'florist|pharmacy': .03,
-    'bakery|pharmacy': .07,
+    'cafe|gym': .34, 'cafe|salon': .22, 'cafe|bakery': .16, 'cafe|tuition': .12, 'cafe|florist': .1, 'cafe|pet': .18, 'cafe|auto': .26, 'cafe|game': .2, 'cafe|activity': .22,
+    'salon|florist': .2, 'salon|bakery': .08, 'salon|gym': .1, 'salon|tuition': .04, 'salon|pet': .08, 'salon|auto': .1, 'salon|game': .04, 'salon|activity': .05,
+    'gym|bakery': .08, 'gym|tuition': .03, 'gym|florist': .02, 'gym|pet': .05, 'gym|auto': .08, 'gym|game': .05, 'gym|activity': .08,
+    'tuition|bakery': .3, 'tuition|florist': .03, 'tuition|pet': .02, 'tuition|auto': .03, 'tuition|game': .1, 'tuition|activity': .14,
+    'florist|bakery': .22, 'florist|pet': .04, 'florist|auto': .03, 'florist|game': .03, 'florist|activity': .06,
+    'bakery|pet': .1, 'bakery|auto': .08, 'bakery|game': .18, 'bakery|activity': .2,
+    'pet|auto': .06, 'pet|game': .03, 'pet|activity': .05,
+    'auto|game': .12, 'auto|activity': .06,
+    'game|activity': .2,
   };
-  const aff = (a, b) => AFF[a < b ? `${a}|${b}` : `${b}|${a}`] ?? AFF[`${a}|${b}`] ?? AFF[`${b}|${a}`] ?? 0.03;
+  const aff = (a, b) => AFF[`${a}|${b}`] ?? AFF[`${b}|${a}`] ?? 0.03;
   // businesses that sell overlapping things: natural rivals
-  const RIVAL = { cafe: ['bakery'], bakery: ['cafe', 'kirana'], kirana: ['bakery', 'pharmacy'], pharmacy: ['kirana'], salon: [], gym: [], tuition: [], florist: [] };
+  const RIVAL = { cafe: ['bakery'], bakery: ['cafe'], game: ['activity'], activity: ['game'], salon: [], gym: [], tuition: [], florist: [], pet: [], auto: [] };
   const routes = [ // ready-made partnerships residents see in Practice Nagar
     ['gym', 'cafe', 'Gym, then breakfast'], ['tuition', 'bakery', 'Tuition pickup, then a snack'], ['salon', 'florist', 'Get ready, pick up flowers'],
-    ['kirana', 'pharmacy', 'Weekly shop + medicines'], ['cafe', 'salon', 'Coffee while you wait'], ['florist', 'bakery', 'Flowers and a cake'],
+    ['cafe', 'salon', 'Coffee while you wait'], ['florist', 'bakery', 'Flowers and a cake'], ['auto', 'cafe', 'Coffee while your car is cleaned'],
+    ['pet', 'cafe', 'Coffee while your pet is groomed'], ['game', 'bakery', 'Game zone, then a snack'], ['activity', 'cafe', 'Pottery class, then coffee'],
   ];
   const byId = id => B.find(b => b.id === id);
 
   // ------- the "run your corner for a month" model -------
-  // give-back: points returned to customers as a share of their bill (Recipie businesses give back 15–20%)
-  const GB = { 15: { search: .07, repeat: .12 }, 18: { search: .085, repeat: .14 }, 20: { search: .095, repeat: .15 } };
+  // give-back: points returned to customers as a share of their bill (10–20% in practice mode)
+  const GB = { 10: { search: .045, repeat: .085 }, 12: { search: .055, repeat: .1 }, 15: { search: .07, repeat: .12 }, 18: { search: .085, repeat: .14 }, 20: { search: .095, repeat: .15 } };
   const LINK = { partner: .2, follow: .05, neutral: 0, rival: 0 };
   function simulate(cfg) {
     const me = byId(cfg.biz), gb = GB[cfg.giveBack], rng = seeded(cfg.seed || 7);
@@ -86,6 +92,7 @@ window.PRACTICE = (function () {
       const rupee = n => '₹' + Math.abs(n).toLocaleString('en-IN');
       if (cfg.giveBack === 20) { const alt = simulate({ ...cfg, giveBack: 18, quiet: true }); tips.push(alt.net >= net * 0.97 ? `At 20%, your regulars earn a lot of points too. 18% would gain about the same (${rupee(alt.net)}) for ${rupee(pointsCost - alt.pointsCost)} less in points.` : `20% pays off here: ${rupee(net - alt.net)} more than at 18%, though it gives ${rupee(pointsCost - alt.pointsCost)} more in points.`); }
       if (cfg.giveBack === 15) { const alt = simulate({ ...cfg, giveBack: 18, quiet: true }); if (alt.net > net * 1.03) tips.push(`18% would bring more people back: ${rupee(alt.net - net)} more gain this month.`); }
+      if (cfg.giveBack <= 12) { const alt = simulate({ ...cfg, giveBack: 15, quiet: true }); tips.push(alt.net > net * 1.03 ? `At ${cfg.giveBack}%, fewer people find you or come back. 15% would gain ${rupee(alt.net - net)} more this month.` : `${cfg.giveBack}% works for you: about the same gain as 15%, and ${rupee(alt.pointsCost - pointsCost)} less in points.`); }
     }
     if (cfg.campaign === 'walk' && !rivals.length) tips.push('The neighbourhood walk needs a rival to run with. Mark a similar business as a rival.');
     if (cfg.campaign === 'walk' && rivals.length) tips.push(`Running a walk with ${rivals.map(r => r.name).join(' and ')} grew demand for both of you.`);
