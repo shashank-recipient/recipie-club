@@ -29,7 +29,7 @@ h1,h2,h3,h4{font-family:var(--f-display);line-height:1.06;letter-spacing:-.02em;
 .top{background:var(--hero-bg);color:var(--hero-fg);padding-top:env(safe-area-inset-top)}
 .top-in{display:flex;align-items:center;gap:12px;min-height:60px}
 .brand{display:flex;align-items:center;gap:9px;color:var(--hero-fg);text-decoration:none;font:800 20px var(--f-display);letter-spacing:-.02em}
-.brand img{border-radius:6px}
+.brand img{display:block;margin:-4px 0}
 .pill{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #4A362B;border-radius:99px;padding:4px 10px;color:var(--saffron)}
 .top-link{margin-left:auto;color:var(--hero-fg);font-weight:600;font-size:15px;text-decoration:none}
 /* hero */
