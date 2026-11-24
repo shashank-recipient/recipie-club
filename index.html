@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recipie Club · the business network of Recipie Points</title>
+<meta name="description" content="Recipie Club is where neighbourhood businesses follow, partner and grow together. Try it in practice mode: run a made-up business for a month and see what partners do for you.">
+<meta name="theme-color" content="#22150F">
+<meta property="og:title" content="Recipie Club">
+<meta property="og:description" content="Your neighbours are your best marketing. Play a month in Practice Nagar.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="club.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="/"><img src="assets/symbol.png" alt="" width="34" height="34">Recipie Club</a>
+    <span class="pill">Practice mode</span>
+    <a class="top-link" href="https://recipiesearch.com/for-business/?src=club-top">Join for real →</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Recipie Club · the business network of Recipie Points</span>
+      <h1>Your neighbours are your best marketing.</h1>
+      <p class="lede">In Recipie Club, local businesses follow each other, partner up and send customers each other’s way. Before we open, try it: run a made-up business in <b>Practice Nagar</b> for a month.</p>
+      <div class="hero-ctas"><a class="btn primary" href="#play">Play a month →</a><a class="btn ghost" href="#how">How the Club works</a></div>
+      <p class="note">Practice mode. Every business and number here is made up to show how it works.</p>
+    </div>
+  </section>
+
+  <section id="how" class="wrap how">
+    <h2>Four ways to be connected</h2>
+    <div class="rels">
+      <article class="rel partner"><b>Partner</b><p>You and a neighbour point customers to each other. “Gym, then breakfast.” The strongest link in the Club.</p></article>
+      <article class="rel follow"><b>Follow</b><p>Keep an eye on a neighbour’s news and events. A light link that sends a few customers your way.</p></article>
+      <article class="rel neutral"><b>Neutral</b><p>No link yet. You’re still in the same neighbourhood and benefit when it gets busier.</p></article>
+      <article class="rel rival"><b>Rival</b><p>Someone who sells what you sell. In the Club, rivals can still team up to grow demand for both, like a neighbourhood coffee walk.</p></article>
+    </div>
+  </section>
+
+  <section id="play" class="wrap game">
+    <div class="g-head"><span class="eyebrow">Practice Nagar · one month</span><h2>Run your corner for a month</h2></div>
+
+    <ol class="steps">
+      <li class="step" id="s1">
+        <h3><span>1</span>Pick your business</h3>
+        <div class="bizgrid" id="bizgrid"></div>
+      </li>
+      <li class="step" id="s2" data-locked>
+        <h3><span>2</span>How much do you give back?</h3>
+        <p class="hint">Recipie businesses give back 15–20% of the bill as Recipie Points. Your price stays whole, and customers spend the points with you or your neighbours.</p>
+        <div class="seg" id="gb" role="radiogroup" aria-label="Give-back level"></div>
+      </li>
+      <li class="step" id="s3" data-locked>
+        <h3><span>3</span>Build your network</h3>
+        <p class="hint">Up to <b>3 partners</b>. The bar shows how often their customers visit a business like yours the same day.</p>
+        <ul class="net" id="net"></ul>
+      </li>
+      <li class="step" id="s4" data-locked>
+        <h3><span>4</span>Pick one campaign</h3>
+        <div class="camps" id="camps"></div>
+      </li>
+    </ol>
+    <div class="run"><button class="btn primary big" id="play-btn" type="button" disabled>Play the month ▶</button><span class="hint" id="play-hint">Pick a business to start.</span></div>
+
+    <div class="results" id="results" hidden>
+      <div class="r-head"><h3 id="r-title"></h3><span class="badge" id="r-badge"></span></div>
+      <div class="kpis" id="kpis"></div>
+      <div class="chart-card">
+        <p class="chart-t">New and returning customers, week by week <small>(on top of your usual regulars)</small></p>
+        <div id="chart"></div>
+        <div class="legend" id="legend"></div>
+        <details class="tbl"><summary>See the numbers</summary><table id="tbl"></table></details>
+      </div>
+      <ul class="tips" id="tips"></ul>
+      <div class="again"><button class="btn" id="again" type="button">Try another strategy</button></div>
+      <div class="compare" id="compare" hidden><h4>Your strategies so far</h4><div class="tbl-wrap"><table id="cmp"></table></div></div>
+
+      <form class="save" id="save" novalidate>
+        <h3>Like how this works? Get a founding spot in the real Club.</h3>
+        <p class="hint">We’ll save your best strategy and WhatsApp you when Recipie opens near you. Founding members get early placement.</p>
+        <div class="fields">
+          <label>Your name<input name="name" autocomplete="name" required></label>
+          <label>Business name<input name="business" autocomplete="organization" required></label>
+          <label>Area<input name="area" placeholder="e.g. Kismatpur" required></label>
+          <label>WhatsApp number<input name="phone" inputmode="tel" autocomplete="tel" placeholder="98xxxxxxxx" required></label>
+        </div>
+        <input type="text" name="bot-field" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="check"><input type="checkbox" name="consent" required><span>Recipie Points Private Limited can contact me on WhatsApp about joining, as described in the <a href="https://recipiesearch.com/privacy/" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+        <button class="btn primary" type="submit">Save my strategy</button>
+        <p class="form-msg" id="save-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Practice mode.</b> Practice Nagar and its businesses are made up. Results are illustrative, not a forecast or a promise.</p>
+    <p><a href="https://recipiepoints.com">Recipie Points</a> · <a href="https://recipiesearch.com">Recipie Search</a> · <a href="https://recipiesearch.com/for-business/?src=club-footer">Join as a business</a> · <a href="https://wa.me/917416660336?text=Hi%20Recipie%2C%20I%20played%20Recipie%20Club%20and%20have%20a%20question%3A%20" target="_blank" rel="noopener">WhatsApp us</a> · <a href="https://recipiesearch.com/privacy/">Privacy</a> · © 2026 Recipie Points Private Limited</p>
+  </div>
+</footer>
+<div class="tip" id="tip" hidden></div>
+<script src="practice.js"></script>
+<script src="club.js"></script>
+</body>
+</html>
