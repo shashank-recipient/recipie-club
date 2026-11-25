@@ -3,16 +3,16 @@
 window.PRACTICE = (function () {
   // service-led businesses only for now (no resellers of physical goods, where margins can't fund a give-back)
   const B = [
-    { id: 'cafe', name: 'Morning Mug Café', short: 'Morning Mug', seg: 'Café', icon: '☕', weekly: 260, spend: 220, repeat: 0.34 },
-    { id: 'salon', name: 'Sharp & Shine Salon', short: 'Sharp & Shine', seg: 'Salon', icon: '✂️', weekly: 90, spend: 650, repeat: 0.42 },
-    { id: 'gym', name: 'Iron Den Gym', short: 'Iron Den', seg: 'Gym', icon: '🏋️', weekly: 150, spend: 300, repeat: 0.6 },
-    { id: 'tuition', name: 'Bright Minds Tuition', short: 'Bright Minds', seg: 'Tuition', icon: '📚', weekly: 70, spend: 600, repeat: 0.7 },
-    { id: 'florist', name: 'Petal & Stem Florist', short: 'Petal & Stem', seg: 'Florist', icon: '💐', weekly: 60, spend: 550, repeat: 0.22 },
-    { id: 'bakery', name: 'Oven Fresh Bakery', short: 'Oven Fresh', seg: 'Bakery', icon: '🥐', weekly: 300, spend: 260, repeat: 0.38 },
-    { id: 'pet', name: 'Paws & Bubbles Pet Spa', short: 'Paws & Bubbles', seg: 'Pet grooming', icon: '🐶', weekly: 45, spend: 900, repeat: 0.5 },
-    { id: 'auto', name: 'Gleam Auto Care', short: 'Gleam Auto', seg: 'Auto care', icon: '🚗', weekly: 80, spend: 800, repeat: 0.4 },
-    { id: 'game', name: 'Level Up Game Zone', short: 'Level Up', seg: 'Game zone', icon: '🎮', weekly: 220, spend: 400, repeat: 0.35 },
-    { id: 'activity', name: 'Clay & Climb Activity Centre', short: 'Clay & Climb', seg: 'Activity centre', icon: '🧗', weekly: 120, spend: 700, repeat: 0.45 },
+    { id: 'cafe', gb: 12, name: 'Morning Mug Café', short: 'Morning Mug', seg: 'Café', icon: '☕', weekly: 260, spend: 220, repeat: 0.34 },
+    { id: 'salon', gb: 18, name: 'Sharp & Shine Salon', short: 'Sharp & Shine', seg: 'Salon', icon: '✂️', weekly: 90, spend: 650, repeat: 0.42 },
+    { id: 'gym', gb: 15, name: 'Iron Den Gym', short: 'Iron Den', seg: 'Gym', icon: '🏋️', weekly: 150, spend: 300, repeat: 0.6 },
+    { id: 'tuition', gb: 10, name: 'Bright Minds Tuition', short: 'Bright Minds', seg: 'Tuition', icon: '📚', weekly: 70, spend: 600, repeat: 0.7 },
+    { id: 'florist', gb: 20, name: 'Petal & Stem Florist', short: 'Petal & Stem', seg: 'Florist', icon: '💐', weekly: 60, spend: 550, repeat: 0.22 },
+    { id: 'bakery', gb: 12, name: 'Oven Fresh Bakery', short: 'Oven Fresh', seg: 'Bakery', icon: '🥐', weekly: 300, spend: 260, repeat: 0.38 },
+    { id: 'pet', gb: 15, name: 'Paws & Bubbles Pet Spa', short: 'Paws & Bubbles', seg: 'Pet grooming', icon: '🐶', weekly: 45, spend: 900, repeat: 0.5 },
+    { id: 'auto', gb: 10, name: 'Gleam Auto Care', short: 'Gleam Auto', seg: 'Auto care', icon: '🚗', weekly: 80, spend: 800, repeat: 0.4 },
+    { id: 'game', gb: 18, name: 'Level Up Game Zone', short: 'Level Up', seg: 'Game zone', icon: '🎮', weekly: 220, spend: 400, repeat: 0.35 },
+    { id: 'activity', gb: 15, name: 'Clay & Climb Activity Centre', short: 'Clay & Climb', seg: 'Activity centre', icon: '🧗', weekly: 120, spend: 700, repeat: 0.45 },
   ];
   // how often customers of one place go to another just before or after (0–1)
   const AFF = {
